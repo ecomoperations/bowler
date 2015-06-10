@@ -11,3 +11,44 @@
  *= require_self
  *= require_tree .
  */
+
+.frame {
+  box-sizing: border-box;
+  width: 100%;
+  height: 75%;
+  margin: 0;
+  border: 1px black solid;
+  
+}
+
+.frame_num {
+	display: inline-block;
+	font-size: 1.5em;
+}
+
+.scoreboard {
+  box-sizing: border-box;
+  width: 100%;
+  height: 20px;
+  text-align: center;
+  margin: 0;
+  border: 1px black solid;
+  
+}
+
+.score {
+  width: 3.9%;
+  border: 1px solid black;
+  display: inline-block;
+  height: 40px;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.total {
+	display: inline-block;
+	color: green;
+	font-size: 2em;
+	float: right;
+    padding: 1px;
+}

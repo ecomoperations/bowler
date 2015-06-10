@@ -1,0 +1,38 @@
+<tbody>
+  <tr>
+    <td>Score</td>
+    
+    
+  </tr>
+<tr>
+<% @p1_bowls.each do |bowl| %>
+  	<% if @total_turns % 2 == 0 %>
+    	<td><%= "#{bowl.score}" %></td>
+    <% else %>
+    	<td><%= "#{bowl.score}" %></td>
+    <% end %>
+    
+   
+    
+    <td><%= "Spare!!" if bowl.spare? %></td>
+    <td><%= "Strike!!" if bowl.strike? %></td>
+            
+ <% end %>
+
+ <% @p2_bowls.each do |bowl| %>
+    <% if @total_turns % 2 == 0 %>
+      <td><%= "#{bowl.score}" %></td>
+    <% else %>
+      <td><%= "#{bowl.score}" %></td>
+    <% end %>
+    
+   
+    
+    <td><%= "Spare!!" if bowl.spare? %></td>
+    <td><%= "Strike!!" if bowl.strike? %></td>
+            
+ <% end %>
+
+
+  </tr>
+    </tbody>

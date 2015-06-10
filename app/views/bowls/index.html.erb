@@ -1,0 +1,53 @@
+
+<h1>An Amazing Bowling App</h1>
+
+  <div id="ajax-scores" >
+  <%= render 'scores' %>
+  </div>
+ 
+
+ <div class="actions" id="ajax-roll">
+    
+ 
+  <div class="scoreboard">
+      
+              
+              <div class="frame_num">
+                <%= "FRAME: #{@frame} - " %>
+                <% if @total_turns.nil? ? false : @total_turns % 2 == 1  %>
+                  <%= "Pins Remaining: #{10 - Bowl.all.map(&:score).last}" %>
+                <% elsif @total_turns == 20 %>
+                   Last Roll
+                <% else %>
+                   First Roll
+                <% end %> 
+              </div>          
+            
+         
+  </div> 
+  <div class="frame">
+        
+         <% @p1_bowls.each do |bowl| %>
+
+              
+              <div class="score"><%= "#{bowl.score}" %></div>
+            
+         <% end %>
+        <div class="frame_num">
+          <%= "Strike!!" if @p1_bowls.last.strike? unless @p1_bowls.last.nil? %>
+          <%= "Spare!!" if @p1_bowls.last.spare? unless @p1_bowls.last.nil? %>
+        </div> 
+        
+        <div class="total"><%= @total_score %></div>
+   </div>
+ 
+
+<br>
+
+  <%= render 'form' %>
+
+
+<%= button_to 'Reset', bowl_reset_path, method: :delete, confirm: 'Bad Frame?' %>
+
+
+<!-- # <%= link_to 'New Bowl', new_bowl_path %> -->

@@ -11,9 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150608230235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bowls", force: true do |t|
+    t.integer  "score"
+    t.integer  "turn",         default: 0
+    t.integer  "total_score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "strike_spare", default: 0
+    t.integer  "player_id"
+  end
+
+  create_table "frames", force: true do |t|
+    t.integer  "bowl_id"
+    t.integer  "first_try"
+    t.integer  "second_try"
+    t.integer  "frame_score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "games", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "players", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

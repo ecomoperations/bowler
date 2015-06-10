@@ -1,9 +1,15 @@
 Bowler::Application.routes.draw do
+  resources :bowls
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'game#index'
+  root 'bowls#index'
+
+  get 'bowl' => 'games#bowl'
+
+  match '/bowl/reset', to: 'bowls#reset', via: :delete
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
@@ -12,7 +18,7 @@ Bowler::Application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  resources :games
 
   # Example resource route with options:
   #   resources :products do

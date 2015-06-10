@@ -1,0 +1,11 @@
+HELLO!
+
+
+
+<%= form_for(@game) do |f| %>
+  <%= f.submit %>
+<% end %>
+
+<%= @games.each do |x| %>
+	<%= "#{x}" %>
+<% end %>
