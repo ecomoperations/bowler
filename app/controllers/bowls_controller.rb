@@ -22,27 +22,13 @@ class BowlsController < ApplicationController
     redirect_to root_path
   end
 
-  # GET /bowls/1
-  # GET /bowls/1.json
-  def show
-  end
-
-  # GET /bowls/new
-  def new
-    @bowl = Bowl.new
-  end
-
-  # GET /bowls/1/edit
-  def edit
-  end
 
   # POST /bowls
   # POST /bowls.json
   def create
     @bowl = Bowl.new(bowl_params)
-    # params[:player_id]
-    # player = Player.find(params[:player_id])
     @bowl.player = Player.find(params[:player_id])
+    # Player Rolls - ID param is passed
     @bowl.roll(params[:player_id])
 
 
@@ -57,19 +43,6 @@ class BowlsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /bowls/1
-  # PATCH/PUT /bowls/1.json
-  def update
-    respond_to do |format|
-      if @bowl.update(bowl_params)
-        format.html { redirect_to root_path, notice: 'Bowl was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @bowl.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE /bowls/1
   # DELETE /bowls/1.json

@@ -1,27 +1,28 @@
 <div class="submit-roll">
-<%= form_for @bowl, remote: true do |f| %>
-  <%= hidden_field_tag :player_id, 1 %>
+<!-- 
+ Hidden Field Tag Player One -->
+  <%= form_for @bowl, remote: true do |f| %>
+    <%= hidden_field_tag :player_id, 1 %>
   
-  <div id="ajax-form">  
-    <% if @total_turns_p1.nil? || @total_turns_p1 < 20  %>
-      <h1>Player One</h1>
-       
-        <%= f.submit "Roll!" %>
-    <% elsif @total_turns_p1 == 20 && @bowls.where(:player_id => 1).map(&:score).last(2).reduce(:+) == 10  %>
-       
-        <%= f.submit "Roll!" %>      
-    <% else %>
+      
+     <% if @total_turns_p1.nil? || @total_turns_p1 < 20  %>
+      <h1>Player One</h1>       
+      <%= f.submit "Roll!" %>
+     <% elsif @total_turns_p1 == 20 && @bowls.where(:player_id => 1).map(&:score).last(2).reduce(:+) == 10  %>
+       <%= f.submit "Roll!" %>      
+     <% else %>
         <h1>Play Again?</h1>
-    <% end %>
-  </div>
+     <% end %>
+    
 
-<% end %>
+  <% end %>
 </div>
+
 <div class="submit-roll">
 <!-- , remote: true -->
 
-
-
+<!-- 
+ Hidden Field Tag Player Two -->
 <%= form_for @bowl, remote: true do |f| %>
   <%= hidden_field_tag :player_id, 2 %>
   
