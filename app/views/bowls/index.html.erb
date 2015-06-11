@@ -1,72 +1,11 @@
 
 <h1>An Amazing Bowling App</h1>
-
-<div class="scoreboard">
-  <div class="frame_num">
-    <%= "FRAME: #{@frame_p1} - " %>
-    <% if @total_turns_p1.nil? ? false : @total_turns_p1 % 2 == 1  %>
-      <%= "Pins Remaining: #{10 - Bowl.where(:player_id => 1).all.map(&:score).last}" %>
-    <% elsif @total_turns_p1 == 20 %>
-       Last Roll
-    <% else %>
-       First Roll
-    <% end %> 
-  </div>            
-</div> 
-  
-<div class="frame">
-        
-   <% @p1_bowls.each do |bowl| %>
-        <div class="score"><%= "#{bowl.score}" %></div>            
-   <% end %>
-   <div class="frame_num">
-     <%= "Strike!!" if @p1_bowls.last.strike?(1) unless @p1_bowls.last.nil? %>
-     <%= "Spare!!" if @p1_bowls.last.spare?(1) unless @p1_bowls.last.nil? %>
-   </div> 
-  
-  <div class="total">
-    <%= @total_score_p1 %>
-  </div>
-</div>
-
-<div class="scoreboard">
-      <div class="frame_num">
-        <%= "FRAME: #{@frame_p2} - " %>
-        <% if @total_turns_p2.nil? ? false : @total_turns_p2 % 2 == 1  %>
-          <%= "Pins Remaining: #{10 - Bowl.where(:player_id => 2).all.map(&:score).last}" %>
-        <% elsif @total_turns_p2 == 20 %>
-           Last Roll
-        <% else %>
-           First Roll
-        <% end %> 
-      </div>   
-</div> 
-
-<div class="frame">
-  <% @p2_bowls.each do |bowl| %>
-
-                
-      <div class="score"><%= "#{bowl.score}" %></div>
-    
- <% end %>
- <div class="frame_num">
-  <%= "Strike!!" if @p2_bowls.last.strike?(2) unless @p2_bowls.last.nil? %>
-  <%= "Spare!!" if @p2_bowls.last.spare?(2) unless @p2_bowls.last.nil? %>
- </div> 
-        
-  <div class="total">
-    <%= @total_score_p2 %>
-  </div>
-</div>
- 
-
-
- 
-
-<br>
-
+<div id="box-score">
+  <%= render 'bowl' %>
+</div><br>
+<div id="roll">
   <%= render 'form' %>
-
+</div>
 <br>
 <br>
 

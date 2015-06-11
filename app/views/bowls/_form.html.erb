@@ -1,5 +1,5 @@
 <div class="submit-roll">
-<%= form_for @bowl do |f| %>
+<%= form_for @bowl, remote: true do |f| %>
   <%= hidden_field_tag :player_id, 1 %>
   
   <div id="ajax-form">  
@@ -22,7 +22,7 @@
 
 
 
-<%= form_for @bowl do |f| %>
+<%= form_for @bowl, remote: true do |f| %>
   <%= hidden_field_tag :player_id, 2 %>
   
   <div id="ajax-form">  
