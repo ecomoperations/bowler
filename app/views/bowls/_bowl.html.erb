@@ -1,38 +1,31 @@
-<tbody>
-  <tr>
-    <td>Score</td>
-    
-    
-  </tr>
-<tr>
-<% @p1_bowls.each do |bowl| %>
-  	<% if @total_turns % 2 == 0 %>
-    	<td><%= "#{bowl.score}" %></td>
-    <% else %>
-    	<td><%= "#{bowl.score}" %></td>
-    <% end %>
-    
-   
-    
-    <td><%= "Spare!!" if bowl.spare? %></td>
-    <td><%= "Strike!!" if bowl.strike? %></td>
+  <div class="scoreboard">
+      
+              
+              <div class="frame_num">
+                <%= "FRAME: #{@frame} - " %>
+                <% if @total_turns.nil? ? false : @total_turns % 2 == 1  %>
+                  <%= "Pins Remaining: #{10 - Bowl.all.map(&:score).last}" %>
+                <% elsif @total_turns == 20 %>
+                   Last Roll
+                <% else %>
+                   First Roll
+                <% end %> 
+              </div>          
             
- <% end %>
+         
+  </div> 
+  <div class="frame">
+        
+         <% @p1_bowls.each do |bowl| %>
 
- <% @p2_bowls.each do |bowl| %>
-    <% if @total_turns % 2 == 0 %>
-      <td><%= "#{bowl.score}" %></td>
-    <% else %>
-      <td><%= "#{bowl.score}" %></td>
-    <% end %>
-    
-   
-    
-    <td><%= "Spare!!" if bowl.spare? %></td>
-    <td><%= "Strike!!" if bowl.strike? %></td>
+              
+              <div class="score"><%= "#{bowl.score}" %></div>
             
- <% end %>
-
-
-  </tr>
-    </tbody>
+         <% end %>
+        <div class="frame_num">
+          <%= "Strike!!" if @p1_bowls.last.strike? unless @p1_bowls.last.nil? %>
+          <%= "Spare!!" if @p1_bowls.last.spare? unless @p1_bowls.last.nil? %>
+        </div> 
+        
+        <div class="total"><%= @total_score %></div>
+   </div>

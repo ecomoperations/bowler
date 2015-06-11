@@ -1,24 +1,13 @@
-
+<div class="submit-roll">
 <%= form_for @bowl do |f| %>
   <%= hidden_field_tag :player_id, 1 %>
-  <% if @bowl.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bowl.errors.count, "error") %> prohibited this bowl from being saved:</h2>
-
-      <ul>
-      <% @bowl.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  
   <div id="ajax-form">  
-    <% if @total_turns.nil? || @total_turns < 20  %>
-      <h1>Let's Bowl</h1>
+    <% if @total_turns_p1.nil? || @total_turns_p1 < 20  %>
+      <h1>Player One</h1>
        
         <%= f.submit "Roll!" %>
-    <% elsif @total_turns == 20 && @bowls.map(&:score).last(2).reduce(:+) == 10  %>
+    <% elsif @total_turns_p1 == 20 && @bowls.where(:player_id => 1).map(&:score).last(2).reduce(:+) == 10  %>
        
         <%= f.submit "Roll!" %>      
     <% else %>
@@ -27,4 +16,27 @@
   </div>
 
 <% end %>
+</div>
+<div class="submit-roll">
 <!-- , remote: true -->
+
+
+
+<%= form_for @bowl do |f| %>
+  <%= hidden_field_tag :player_id, 2 %>
+  
+  <div id="ajax-form">  
+    <% if @total_turns_p2.nil? || @total_turns_p2 < 20  %>
+      <h1>Player Two</h1>
+       
+        <%= f.submit "Roll!" %>
+    <% elsif @total_turns == 20 && @bowls.where(:player_id => 2).map(&:score).last(2).reduce(:+) == 10  %>
+       
+        <%= f.submit "Roll!" %>      
+    <% else %>
+        <h1>Play Again?</h1>
+    <% end %>
+  </div>
+
+<% end %>
+</div>

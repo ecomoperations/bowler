@@ -9,9 +9,12 @@ class BowlsController < ApplicationController
     @p2_bowls = Bowl.where(player_id: 2)
     @bowls = Bowl.all
     @bowl = Bowl.new
-    @total_score = @bowls.total_score
-    @total_turns = @bowls.map(&:turn).reduce(:+)
-    @frame = @bowl.frame_number
+    @total_score_p1 = @bowls.total_score(1)
+    @total_score_p2 = @bowls.total_score(2)
+    @total_turns_p1 = @bowls.where(player_id: 1).map(&:turn).reduce(:+)
+    @total_turns_p2 = @bowls.where(player_id: 2).map(&:turn).reduce(:+)
+    @frame_p1 = @bowl.frame_number(1)
+    @frame_p2 = @bowl.frame_number(2)
   end
 
   def reset
@@ -40,7 +43,7 @@ class BowlsController < ApplicationController
     # params[:player_id]
     # player = Player.find(params[:player_id])
     @bowl.player = Player.find(params[:player_id])
-    @bowl.roll
+    @bowl.roll(params[:player_id])
 
 
     respond_to do |format|

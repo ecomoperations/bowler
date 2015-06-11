@@ -21,6 +21,18 @@
   
 }
 
+.reset-button {
+  padding: 2em;
+  float: right;
+}
+
+.submit-roll {
+  display: inline-block;
+  width: 40%;
+}
+
+
+
 .frame_num {
 	display: inline-block;
 	font-size: 1.5em;
