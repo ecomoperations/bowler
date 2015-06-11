@@ -7,7 +7,7 @@ Bowler::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'bowls#index'
 
-  get 'bowl' => 'games#bowl'
+  # get 'bowl' => 'games#bowl'
 
   match '/bowl/reset', to: 'bowls#reset', via: :delete
 
